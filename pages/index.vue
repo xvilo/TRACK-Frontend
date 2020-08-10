@@ -1,48 +1,26 @@
 <template>
   <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        nuxt-test
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+    <p>Content!</p>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import {Timer} from "~/models/timer";
 
-export default Vue.extend({})
+export default {
+  async asyncData({$axios, store}) {
+    $axios.get('http://127.0.0.1:4010/timers?date=1959-09-28').then(data => {
+      const timers: Array<Timer> = data.data
+      timers.forEach((timer) => {
+        store.commit('timer/add', new Timer(timer.id, timer.note))
+        console.log(`Stored Timer[ID=${timer.id}]`);
+      })
+    })
+  }
+}
 </script>
 
 <style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
 .title {
   font-family:
     'Quicksand',

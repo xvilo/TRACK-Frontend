@@ -12,7 +12,7 @@ NuxtJS-framework. This is an easy to use framework around Vue.
     - [ ] Start Timer
     - [ ] Stop Timer
     - [ ] Remove Timer
-- Optional:
+- [ ] Optional:
     - [ ] Link Gitlab page
     - [ ] Link Harvest Forecast page
 

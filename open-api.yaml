@@ -5,7 +5,7 @@ info:
   license:
     name: MIT
 paths:
-  /timers:
+  /api/v1/timers:
     get:
       summary: List all timers
       operationId: listTimers
@@ -33,7 +33,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /totals/{year}/{week}:
+  /api/v1//totals/{year}/{week}:
     get:
       summary: List all timers
       operationId: listTotalsForYearAndWeek

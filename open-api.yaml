@@ -10,7 +10,7 @@ paths:
       summary: List all timers
       operationId: listTimers
       tags:
-        - pets
+        - timers
       parameters:
         - in: query
           name: date
@@ -32,6 +32,41 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /totals/{year}/{week}:
+    get:
+      summary: List all timers
+      operationId: listTotalsForYearAndWeek
+      tags:
+        - administration
+      parameters:
+        - in: path
+          name: year
+          schema:
+            type: string
+          description: The year for the totals to return
+          required: true
+          example: "2020"
+        - in: path
+          name: week
+          schema:
+            type: string
+          description: The week for the totals to return
+          required: true
+          example: "03"
+      responses:
+        "200":
+          description: The totals for a given year + week
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WeekTotals'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
 components:
   schemas:
     Timer:
@@ -102,8 +137,35 @@ components:
           gitlab:
             reference: group/sub-group/project-name#10
           formatted:
-            hours: 02
-            minutes: 43
+            $ref: '#/components/schemas/FormattedTime'
+    WeekTotals:
+      type: object
+      required:
+        - totalHours
+        - weekDayTotals
+      properties:
+        totalHours:
+          $ref: '#/components/schemas/FormattedTime'
+        weekDayTotals:
+          type: array
+          items:
+            type: object
+            properties:
+              date:
+                description: Date the timer is for
+                type: string
+                format: date
+              totalHours:
+                $ref: '#/components/schemas/FormattedTime'
+    FormattedTime:
+      type: object
+      properties:
+        hours:
+          type: string
+          example: "22"
+        minutes:
+          type: string
+          example: "30"
     Error:
       type: "object"
       required:

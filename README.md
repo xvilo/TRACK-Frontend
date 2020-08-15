@@ -46,8 +46,8 @@ $ npm install -g @stoplight/prism-cli
 
 $ prism mock open-api.yaml
 [3:52:06 PM] › [CLI] …  awaiting  Starting Prism…
-[3:52:06 PM] › [CLI] ℹ  info      GET        http://127.0.0.1:4010/timers?date=1998-01-15
-[3:52:06 PM] › [CLI] ℹ  info      GET        http://127.0.0.1:4010/totals/dolores/et
+[3:52:06 PM] › [CLI] ℹ  info      GET        http://127.0.0.1:4010/api/v1/timers?date=1998-01-15
+[3:52:06 PM] › [CLI] ℹ  info      GET        http://127.0.0.1:4010/api/v1/totals/dolores/et
 [3:52:06 PM] › [CLI] ▶  start     Prism is listening on http://127.0.0.1:4010
 ```
 
